@@ -8,9 +8,11 @@ namespace JogoDeAdivinhacao.ConsoleApp
         {
             while (true)
             {
+                // variável que armazena os número já tentadaos
                 int[] numeroDigitados = new int[10];
                 int contador = 0;
 
+                // menu
                 Console.Clear();
                 Console.WriteLine(" ---------------------------------------------");
                 Console.WriteLine(" Jogo de adivinhação");
@@ -37,9 +39,11 @@ namespace JogoDeAdivinhacao.ConsoleApp
                 else if (escolhaDeDificuldade == "3")
                     totalDeTentativas = 3;
 
+                // gera número secreto
                 Random geradorDeNumeros = new Random();
                 int numeroSecreto = geradorDeNumeros.Next(1, 21);
 
+                // contabiliza e mostra tentativas já feitas
                 for (int tentativa = 1; tentativa <= totalDeTentativas; tentativa++)
                 {
                     Console.Clear();
@@ -47,20 +51,23 @@ namespace JogoDeAdivinhacao.ConsoleApp
                     Console.WriteLine($" Tentativa {tentativa} de {totalDeTentativas}");
                     Console.WriteLine(" ---------------------------------------------");
 
+                    // mostra números já digitados
                     if (numeroDigitados[0] != 0)
                     {
                         Console.Write(" Número já digitados: ");
                         for (int numeroTentado = 0; numeroTentado < 10; numeroTentado++)
                         {
-                            if (numeroDigitados[numeroTentado] != 0)
-                                if (numeroTentado != 0)
+                            if (numeroTentado < 9)
+                            {
+                                if (numeroDigitados[numeroTentado+1] != 0)
                                 {
-                                    Console.Write($" {numeroDigitados[numeroTentado]},");
+                                    Console.Write($" {numeroDigitados[numeroTentado]}, ");
                                 }
-                                else
+                                else if ((numeroDigitados[numeroTentado] != 0) && (numeroDigitados[numeroTentado + 1] == 0))
                                 {
-                                    Console.Write(numeroDigitados[0]);
+                                    Console.Write(numeroDigitados[numeroTentado]);
                                 }
+                            }
                         }
 
                         Console.WriteLine("\n ---------------------------------------------\n");
@@ -68,7 +75,7 @@ namespace JogoDeAdivinhacao.ConsoleApp
                     
                     Console.Write(" Digite um número entre 1 á 20 para a adivinhação: ");
                     int numeroDigitado = Convert.ToInt32(Console.ReadLine());
-
+                    // condição de vitória
                     if (numeroDigitado == numeroSecreto)
                     {
                         Console.Clear();
