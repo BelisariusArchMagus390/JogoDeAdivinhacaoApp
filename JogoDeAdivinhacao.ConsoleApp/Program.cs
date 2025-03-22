@@ -72,9 +72,35 @@ namespace JogoDeAdivinhacao.ConsoleApp
 
                         Console.WriteLine("\n ---------------------------------------------\n");
                     }
-                    
-                    Console.Write(" Digite um número entre 1 á 20 para a adivinhação: ");
-                    int numeroDigitado = Convert.ToInt32(Console.ReadLine());
+
+                    int numeroDigitado = 0;
+
+                    bool seNumeroExiste = true;
+                    while (seNumeroExiste == true)
+                    {
+                        Console.Write(" Digite um número entre 1 á 20 para a adivinhação: ");
+                        numeroDigitado = Convert.ToInt32(Console.ReadLine());
+
+                        for (int numeroTentado = 0; numeroTentado < 10; numeroTentado++)
+                        {
+                            if (numeroDigitados[numeroTentado] != numeroDigitado)
+                            {
+                                seNumeroExiste = false;
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine(" ---------------------------------------------");
+                                Console.WriteLine(" Esse número já foi digitado, por favor digite um diferente.");
+                                Console.WriteLine(" ---------------------------------------------");
+                                break;
+                            }
+                        }
+                    }
+
+                    numeroDigitados[contador] = numeroDigitado;
+                    contador += 1;
+
                     // condição de vitória
                     if (numeroDigitado == numeroSecreto)
                     {
@@ -90,8 +116,6 @@ namespace JogoDeAdivinhacao.ConsoleApp
                         Console.WriteLine(" ---------------------------------------------");
                         Console.WriteLine(" O número digitado foi maior que o número secreto!");
                         Console.WriteLine(" ---------------------------------------------\n");
-                        numeroDigitados[contador] = numeroDigitado;
-                        contador += 1;
                     }
                     else if (numeroDigitado < numeroSecreto)
                     {
@@ -99,8 +123,6 @@ namespace JogoDeAdivinhacao.ConsoleApp
                         Console.WriteLine(" ---------------------------------------------");
                         Console.WriteLine(" O número digitado foi menor que o número secreto!");
                         Console.WriteLine(" ---------------------------------------------\n");
-                        numeroDigitados[contador] = numeroDigitado;
-                        contador += 1;
                     }
 
                     Console.Write(" Pressione ENTER para continuar...");
