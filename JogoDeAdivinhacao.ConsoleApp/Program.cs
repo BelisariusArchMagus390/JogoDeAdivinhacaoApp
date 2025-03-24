@@ -54,14 +54,14 @@ namespace JogoDeAdivinhacao.ConsoleApp
                     // mostra números já digitados
                     if (numeroDigitados[0] != 0)
                     {
-                        Console.Write(" Número já digitados: ");
+                        Console.Write(" Números já digitados: ");
                         for (int numeroTentado = 0; numeroTentado < 10; numeroTentado++)
                         {
                             if (numeroTentado < 9)
                             {
                                 if (numeroDigitados[numeroTentado+1] != 0)
                                 {
-                                    Console.Write($" {numeroDigitados[numeroTentado]}, ");
+                                    Console.Write($"{numeroDigitados[numeroTentado]}, ");
                                 }
                                 else if ((numeroDigitados[numeroTentado] != 0) && (numeroDigitados[numeroTentado + 1] == 0))
                                 {
@@ -74,7 +74,7 @@ namespace JogoDeAdivinhacao.ConsoleApp
                     }
 
                     int numeroDigitado = 0;
-
+                    // verifica se o número já foi digitado
                     bool seNumeroExiste = true;
                     while (seNumeroExiste == true)
                     {
@@ -83,17 +83,18 @@ namespace JogoDeAdivinhacao.ConsoleApp
 
                         for (int numeroTentado = 0; numeroTentado < 10; numeroTentado++)
                         {
-                            if (numeroDigitados[numeroTentado] != numeroDigitado)
-                            {
-                                seNumeroExiste = false;
-                            }
-                            else
+                            Console.WriteLine("lol");
+                            if (numeroDigitados[numeroTentado] == numeroDigitado)
                             {
                                 Console.Clear();
                                 Console.WriteLine(" ---------------------------------------------");
                                 Console.WriteLine(" Esse número já foi digitado, por favor digite um diferente.");
                                 Console.WriteLine(" ---------------------------------------------");
                                 break;
+                            }
+                            else if ((numeroDigitados[numeroTentado] != numeroDigitado) && (numeroTentado == 9))
+                            {
+                                seNumeroExiste = false;
                             }
                         }
                     }
