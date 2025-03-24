@@ -4,6 +4,18 @@ namespace JogoDeAdivinhacao.ConsoleApp
 {
     internal class Program
     {
+        static double calculoPontuacao(int numeroDigitado, int numeroSecreto)
+        {
+            double resultado = (numeroDigitado - numeroSecreto) / 2;
+
+            if (resultado < 0)
+            {
+                resultado = -resultado;
+            }
+
+            return resultado;
+        }
+
         static void Main(string[] args)
         {
             while (true)
@@ -11,6 +23,7 @@ namespace JogoDeAdivinhacao.ConsoleApp
                 // variável que armazena os número já tentadaos
                 int[] numeroDigitados = new int[10];
                 int contador = 0;
+                double pontuacao = 1000;
 
                 // menu
                 Console.Clear();
@@ -49,6 +62,7 @@ namespace JogoDeAdivinhacao.ConsoleApp
                     Console.Clear();
                     Console.WriteLine(" ---------------------------------------------");
                     Console.WriteLine($" Tentativa {tentativa} de {totalDeTentativas}");
+                    Console.WriteLine($" Pontuação: {pontuacao}");
                     Console.WriteLine(" ---------------------------------------------");
 
                     // mostra números já digitados
@@ -83,7 +97,6 @@ namespace JogoDeAdivinhacao.ConsoleApp
 
                         for (int numeroTentado = 0; numeroTentado < 10; numeroTentado++)
                         {
-                            Console.WriteLine("lol");
                             if (numeroDigitados[numeroTentado] == numeroDigitado)
                             {
                                 Console.Clear();
@@ -102,14 +115,16 @@ namespace JogoDeAdivinhacao.ConsoleApp
                     numeroDigitados[contador] = numeroDigitado;
                     contador += 1;
 
+                    numeroDigitado = numeroSecreto;
+
                     // condição de vitória
                     if (numeroDigitado == numeroSecreto)
                     {
                         Console.Clear();
                         Console.WriteLine(" ---------------------------------------------");
                         Console.WriteLine(" Parabéns, você acertou!");
+                        Console.WriteLine($" Pontuação final: {pontuacao}");
                         Console.WriteLine(" ---------------------------------------------\n");
-                        break;
                     }
                     else if (numeroDigitado > numeroSecreto)
                     {
@@ -117,6 +132,8 @@ namespace JogoDeAdivinhacao.ConsoleApp
                         Console.WriteLine(" ---------------------------------------------");
                         Console.WriteLine(" O número digitado foi maior que o número secreto!");
                         Console.WriteLine(" ---------------------------------------------\n");
+
+                        pontuacao -= calculoPontuacao(numeroDigitado, numeroSecreto);
                     }
                     else if (numeroDigitado < numeroSecreto)
                     {
@@ -124,10 +141,15 @@ namespace JogoDeAdivinhacao.ConsoleApp
                         Console.WriteLine(" ---------------------------------------------");
                         Console.WriteLine(" O número digitado foi menor que o número secreto!");
                         Console.WriteLine(" ---------------------------------------------\n");
+
+                        pontuacao -= calculoPontuacao(numeroDigitado, numeroSecreto);
                     }
 
                     Console.Write(" Pressione ENTER para continuar...");
                     Console.ReadLine();
+
+                    if (numeroDigitado == numeroSecreto)
+                        break;
                 }
 
                 Console.Clear();
