@@ -115,8 +115,6 @@ namespace JogoDeAdivinhacao.ConsoleApp
                     numeroDigitados[contador] = numeroDigitado;
                     contador += 1;
 
-                    numeroDigitado = numeroSecreto;
-
                     // condição de vitória
                     if (numeroDigitado == numeroSecreto)
                     {
@@ -143,6 +141,15 @@ namespace JogoDeAdivinhacao.ConsoleApp
                         Console.WriteLine(" ---------------------------------------------\n");
 
                         pontuacao -= calculoPontuacao(numeroDigitado, numeroSecreto);
+                    }
+
+                    if (tentativa == totalDeTentativas)
+                    {
+                        Console.Clear();
+                        Console.WriteLine(" ---------------------------------------------");
+                        Console.WriteLine(" GAME OVER!");
+                        Console.WriteLine($" Pontuação final: {pontuacao}");
+                        Console.WriteLine(" ---------------------------------------------\n");
                     }
 
                     Console.Write(" Pressione ENTER para continuar...");
