@@ -4,7 +4,9 @@
 
 O jogo da adivinhação é um jogo simples onde o jogador tem que chutar um número aleatório entre 1 a 20 que é gerado pelo o computador.
 
-![](https://imgur.com/1Wq9Kwg.gif)
+<p align="center">
+  <img src="https://imgur.com/1Wq9Kwg.gif" />
+</p>
 
 ## Funcionalidades
 
