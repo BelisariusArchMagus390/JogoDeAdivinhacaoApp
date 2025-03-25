@@ -16,6 +16,18 @@ namespace JogoDeAdivinhacao.ConsoleApp
             return resultado;
         }
 
+        static void mostrarGameOver(int tentativa, int totalDeTentativas, double pontuacao)
+        {
+            if (tentativa == totalDeTentativas)
+            {
+                Console.Clear();
+                Console.WriteLine(" ---------------------------------------------");
+                Console.WriteLine(" GAME OVER!");
+                Console.WriteLine($" Pontuação final: {pontuacao}");
+                Console.WriteLine(" ---------------------------------------------\n");
+            }
+        }
+
         static void Main(string[] args)
         {
             while (true)
@@ -132,6 +144,8 @@ namespace JogoDeAdivinhacao.ConsoleApp
                         Console.WriteLine(" ---------------------------------------------\n");
 
                         pontuacao -= calculoPontuacao(numeroDigitado, numeroSecreto);
+
+                        mostrarGameOver(tentativa, totalDeTentativas, pontuacao);
                     }
                     else if (numeroDigitado < numeroSecreto)
                     {
@@ -141,15 +155,8 @@ namespace JogoDeAdivinhacao.ConsoleApp
                         Console.WriteLine(" ---------------------------------------------\n");
 
                         pontuacao -= calculoPontuacao(numeroDigitado, numeroSecreto);
-                    }
 
-                    if (tentativa == totalDeTentativas)
-                    {
-                        Console.Clear();
-                        Console.WriteLine(" ---------------------------------------------");
-                        Console.WriteLine(" GAME OVER!");
-                        Console.WriteLine($" Pontuação final: {pontuacao}");
-                        Console.WriteLine(" ---------------------------------------------\n");
+                        mostrarGameOver(tentativa, totalDeTentativas, pontuacao);
                     }
 
                     Console.Write(" Pressione ENTER para continuar...");
