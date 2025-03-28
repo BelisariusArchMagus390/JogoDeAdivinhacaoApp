@@ -14,3 +14,7 @@ O jogo da adivinhação é um jogo simples onde o jogador tem que chutar um núm
 - Sistema de pontuação: A cada tentativa falha, diminuirá a pontuação do jogador, que por padrão é 1000.
 - Geração aleatória de números: A cada nova partida, um novo número secreto será gerado.
 - Será mostrado a pontuação final a cada fim de partida.
+
+## Tecnologias utilizadas:
+
+[![My Skills](https://skillicons.dev/icons?i=git,github,cs,visualstudio,dotnet)](https://skillicons.dev)
